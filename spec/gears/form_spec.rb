@@ -51,6 +51,11 @@ describe ExampleForm do
 
     it { should be_valid }
 
+    it 'has no errors' do
+      subject.valid?
+      subject.errors.should be_empty
+    end
+
     it 'can be saved' do
       subject.should_receive(:persist!)
       subject.save!
@@ -60,7 +65,10 @@ describe ExampleForm do
   context 'when invalid' do
     let(:form) { ExampleForm.bind }
 
-    it { should_not be_valid }
+    it 'has errors' do
+      subject.valid?
+      subject.errors.should be_present
+    end
 
     it 'cannot be saved' do
       expect { subject.save! }.to raise_error Gears::ValidationError

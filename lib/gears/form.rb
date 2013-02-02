@@ -24,14 +24,19 @@ module Gears
       end
 
       def bind attrs={}
-        f = new attrs
-        f.instance_eval { @bound = true }
+        f = new
+        f.bind attrs
         f
       end
 
     end
 
     validate :field_coercion
+
+    def bind attrs={}
+      self.attributes = (attributes || {}).merge attrs
+      @bound = true
+    end
 
     def bound?
       @bound
@@ -47,7 +52,7 @@ module Gears
     end
 
     def persist!
-      raise "#{self.class} does not supply a persist method"
+      raise "#{self.class} does not define a persist method"
     end
 
     private #----------
