@@ -23,21 +23,31 @@ module Gears
         end
       end
 
+      def bind attrs={}
+        f = new attrs
+        f.instance_eval { @bound = true }
+        f
+      end
+
     end
 
     validate :field_coercion
 
     def bound?
-      attributes.values.any?
+      @bound
     end
 
     def unbound?
-      !bound?
+      !@bound
     end
 
     def save!
       raise Gears::ValidationError.new errors.full_messages.join(',') unless valid?
       persist!
+    end
+
+    def persist!
+      raise "#{self.class} does not supply a persist method"
     end
 
     private #----------

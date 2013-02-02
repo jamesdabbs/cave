@@ -1,5 +1,4 @@
 require 'helper'
-require 'pry'
 
 class ExampleForm < Gears::Form
   field :name, String,  presence: true
@@ -8,53 +7,63 @@ end
 
 describe ExampleForm do
   context 'when unbound' do
-    let(:form) { ExampleForm.new }
+    subject { ExampleForm.new }
 
-    it 'is not bound' do
-      form.should_not be_bound
-    end
-
-    it 'is not valid' do
-      form.should_not be_valid
-    end
-
+    it { should_not be_bound }
+    it { should_not be_valid }
   end
 
   context 'when bound' do
-    let(:form) { ExampleForm.new name: 'James', age: 26 }
+    subject { ExampleForm.bind name: 'James', age: 26 }
 
-    it 'is bound' do
-      form.should be_bound
-    end
-
-    it 'can be valid' do
-      form.should be_valid
-    end
-
-    it 'returns bound values' do
-      form.name.should == 'James'
-    end
+    it { should be_bound }
+    its(:name) { should == 'James' }
 
     it 'validates name' do
-      form.name = ''
-      form.should_not be_valid
+      subject.name = ''
+      subject.should_not be_valid
     end
 
     it 'coerces age' do
-      form.age = '27'
-      form.age.should be 27
+      subject.age = '27'
+      subject.age.should be 27
     end
 
     it 'fails on uncoercible ages' do
-      form.age = 'invalid'
-      form.should_not be_valid
+      subject.age = 'invalid'
+      subject.should_not be_valid
     end
 
     it 'allows uncoerced nils' do
-      form.age = nil
-      form.should be_valid
+      subject.age = nil
+      subject.should be_valid
     end
+  end
 
-    pending 'write tests for `save!` method'
+  context 'when bound with no data' do
+    subject { ExampleForm.bind }
+
+    it { should be_bound }
+  end
+
+  context 'when valid' do
+    subject { ExampleForm.bind name: 'James', age: 26 }
+
+    it { should be_valid }
+
+    it 'can be saved' do
+      subject.should_receive(:persist!)
+      subject.save!
+    end
+  end
+
+  context 'when invalid' do
+    let(:form) { ExampleForm.bind }
+
+    it { should_not be_valid }
+
+    it 'cannot be saved' do
+      expect { subject.save! }.to raise_error Gears::ValidationError
+    end
   end
 end
