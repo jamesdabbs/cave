@@ -57,7 +57,7 @@ describe ExampleForm do
     end
 
     it 'can be saved' do
-      subject.should_receive(:persist!)
+      subject.should_receive :persist!
       subject.save!
     end
   end

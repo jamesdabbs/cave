@@ -23,15 +23,20 @@ module Gears
         end
       end
 
-      def bind attrs={}
-        f = new
-        f.bind attrs
+      def bind *args
+        f = new *args
+        f.instance_eval { @bound = true }
         f
       end
 
     end
 
     validate :field_coercion
+
+    def initialize attrs={}
+      super
+      bind attrs unless attrs.empty?
+    end
 
     def bind attrs={}
       self.attributes = (attributes || {}).merge attrs
