@@ -15,13 +15,15 @@ Largely inspired by Code Climate's [7 Patterns to Refactor Fat ActiveRecord Mode
 and [Virtus](https://github.com/solnic/virtus)' type coercion. You may want to consult their documentation for
 more options.
 
+First define a Form subclass like so
+```ruby
     class FormClass < Cave::Form
       field :name, String,
         presence: true,
-        format: { :with => /\A[a-zA-Z]+\z/, :message => "Only letters allowed" }
+        format: { with: /\A[a-zA-Z]+\z/, message: "Only letters allowed" }
         # Takes any number of standard Rails validation helper options
       field :favorite_number, Integer,
-        inclusion: { :in => 1..10 }
+        inclusion: { in: 1..10 }
 
       def persist!
         # Define your persistence logic here.
@@ -29,7 +31,10 @@ more options.
         "Form saved!"
       end
     end
+```
 
+The resulting class may be used as follows
+```ruby
     form = FormClass.bind name: 'James Dabbs', favorite_number: 11
     form.valid?
     => false
@@ -40,15 +45,17 @@ more options.
     form.valid?
     => true
     form.favorite_number
-    => 7  // Note the type coercion
+    => 7  # Note the type coercion
     form.save!
     => "Form saved!"
+```
 
 ###Forms for Models
 
 For the common use case of creating or updating a model with a form, Cave provides
 the [Cave::ModelForm](https://github.com/jamesdabbs/cave/blob/master/lib/cave/model_form.rb) class.
 
+```ruby
     class ProfileForm < Cave::ModelForm
       model Profile
 
@@ -60,6 +67,7 @@ the [Cave::ModelForm](https://github.com/jamesdabbs/cave/blob/master/lib/cave/mo
 
     instance = Profile.first
     ProfileForm.bind(instance, name: 'Jim').save!  # Updates the Profile's name
+```
 
 ###Planned features
 
