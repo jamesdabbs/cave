@@ -71,6 +71,8 @@ the [Cave::ModelForm](https://github.com/jamesdabbs/cave/blob/master/lib/cave/mo
 
 ###Planned features
 
+- Automagically generate new field given :confirmation validation option
+- Accept :default and :initial field options
 - Add presenters for rendering forms into html (inc. a bootstrap template)
 - Improve handling of intial values (as for unbound ModelForms)
 - Write docs
