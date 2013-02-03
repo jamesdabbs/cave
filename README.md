@@ -46,19 +46,20 @@ more options.
 For the common use case of creating or updating a model with a form, Gears provides
 the [Gears::ModelForm](https://github.com/jamesdabbs/gears/blob/master/lib/gears/model_form.rb) class.
 
-    class FormClass < Gears::ModelForm
+    class ProfileForm < Gears::ModelForm
       model Profile
 
       field :name, String, presence: true
       field :age,  Integer
     end
 
-    FormClass.bind(name: 'James').save!  # Creates a new Profile named 'James'
+    ProfileForm.bind(name: 'James').save!  # Creates a new Profile named 'James'
 
     instance = Profile.first
-    FormClass.bind(instance, name: 'Jim').save!  # Updates the Profile's name
+    ProfileForm.bind(instance, name: 'Jim').save!  # Updates the Profile's name
 
 ###Planned features
 
 - Add presenters for rendering forms into html (inc. a bootstrap template)
 - Improve handling of intial values (as for unbound ModelForms)
+- Requests?
