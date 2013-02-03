@@ -18,8 +18,15 @@ module Cave
 
         attribute name, type
 
+        confirm = false
         opts.each do |k,v|
           validates name, {k => v}
+          confirm ||= (k == :confirmation && v)
+        end
+
+        if confirm
+          conf_opts = opts[:presence] ? { presence: true } : {}
+          field "#{name}_confirmation", type, conf_opts
         end
       end
 
