@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    gears (0.0.1)
+    cave (0.0.1)
       activemodel
       virtus
 
@@ -43,6 +43,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  gears!
+  cave!
   pry
   rspec

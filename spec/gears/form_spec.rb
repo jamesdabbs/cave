@@ -1,6 +1,6 @@
 require 'helper'
 
-class ExampleForm < Gears::Form
+class ExampleForm < Cave::Form
   field :name, String,  presence: true
   field :age,  Integer
 end
@@ -71,7 +71,7 @@ describe ExampleForm do
     end
 
     it 'cannot be saved' do
-      expect { subject.save! }.to raise_error Gears::ValidationError
+      expect { subject.save! }.to raise_error Cave::ValidationError
     end
   end
 end

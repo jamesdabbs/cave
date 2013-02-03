@@ -1,4 +1,4 @@
-module Gears
+module Cave
   class ModelForm < Form
     def self.model klass=nil
       @@model ||= klass

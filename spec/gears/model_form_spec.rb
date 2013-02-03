@@ -5,7 +5,7 @@ class Profile < OpenStruct
   def update_attributes attrs; end
 end
 
-class ExampleModelForm < Gears::ModelForm
+class ExampleModelForm < Cave::ModelForm
   model Profile
 
   field :name, String

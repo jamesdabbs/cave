@@ -1,4 +1,4 @@
-Gears
+Cave
 =====
 
 A simple Ruby form library, intended for use with Rails
@@ -7,12 +7,12 @@ Largely inspired by Code Climate's [7 Patterns to Refactor Fat ActiveRecord Mode
 
 ### Forms
 
-[Gears::Form](https://github.com/jamesdabbs/gears/blob/master/lib/gears/form.rb) is a light glue layer around 
+[Cave::Form](https://github.com/jamesdabbs/cave/blob/master/lib/cave/form.rb) is a light glue layer around 
 [Rails' ActiveModel::Validations](http://guides.rubyonrails.org/active_record_validations_callbacks.html) 
 and [Virtus](https://github.com/solnic/virtus)' type coercion. You may want to consult their documentation for
 more options.
 
-    class FormClass < Gears::Form
+    class FormClass < Cave::Form
       field :name, String,
         presence: true,
         format: { :with => /\A[a-zA-Z]+\z/, :message => "Only letters allowed" }
@@ -43,10 +43,10 @@ more options.
 
 ###Forms for Models
 
-For the common use case of creating or updating a model with a form, Gears provides
-the [Gears::ModelForm](https://github.com/jamesdabbs/gears/blob/master/lib/gears/model_form.rb) class.
+For the common use case of creating or updating a model with a form, Cave provides
+the [Cave::ModelForm](https://github.com/jamesdabbs/cave/blob/master/lib/cave/model_form.rb) class.
 
-    class ProfileForm < Gears::ModelForm
+    class ProfileForm < Cave::ModelForm
       model Profile
 
       field :name, String, presence: true
@@ -62,4 +62,5 @@ the [Gears::ModelForm](https://github.com/jamesdabbs/gears/blob/master/lib/gears
 
 - Add presenters for rendering forms into html (inc. a bootstrap template)
 - Improve handling of intial values (as for unbound ModelForms)
+- Write docs
 - Requests?

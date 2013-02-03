@@ -1,7 +1,7 @@
 require 'active_model'
 require 'virtus'
 
-module Gears
+module Cave
   class Form
     include Virtus
     include ActiveModel::Validations
@@ -52,7 +52,7 @@ module Gears
     end
 
     def save!
-      raise Gears::ValidationError.new errors.full_messages.join(',') unless valid?
+      raise Cave::ValidationError.new errors.full_messages.join(',') unless valid?
       persist!
     end
 
