@@ -2,6 +2,7 @@ Cave
 =====
 
 [![Build Status](https://travis-ci.org/jamesdabbs/cave.png)](https://travis-ci.org/jamesdabbs/cave)
+[![Dependency Status](https://gemnasium.com/jamesdabbs/cave.png)](https://gemnasium.com/jamesdabbs/cave)
 
 A simple Ruby form library, intended for use with Rails
 
