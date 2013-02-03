@@ -1,5 +1,7 @@
-Cave
+Cave 
 =====
+
+[![Build Status](https://travis-ci.org/jamesdabbs/cave.png)](https://travis-ci.org/jamesdabbs/cave)
 
 A simple Ruby form library, intended for use with Rails
 

@@ -1,8 +1,14 @@
 language: ruby
+bundler_args: --without development
 rvm:
-  - 1.9.2
   - 1.9.3
-
+gemfile:
+  - Gemfile
 branches:
   only:
     - master
+notifications:
+  recipients:
+    - jamesdabbs@gmail.com
+  on_success: always
+  on_failure: always
