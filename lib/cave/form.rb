@@ -13,6 +13,8 @@ module Cave
       end
 
       def field name, type, opts={}
+        name = name.to_sym
+
         @_fields ||= {}
         @_fields[name] = type
 
