@@ -71,6 +71,10 @@ describe ExampleForm do
     end
 
     it 'cannot be saved' do
+      subject.save.should be_false
+    end
+
+    it 'raises an error when save!d' do
       expect { subject.save! }.to raise_error Cave::ValidationError
     end
   end
