@@ -6,6 +6,9 @@ module Cave
     include Virtus
     include ActiveModel::Validations
 
+    extend ActiveModel::Naming
+    include ActiveModel::Conversion
+
     class << self
 
       def fields
@@ -67,6 +70,10 @@ module Cave
 
     def save
       !!save! rescue false
+    end
+
+    def persisted?
+      false
     end
 
     def persist!
