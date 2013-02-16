@@ -11,6 +11,6 @@ Gem::Specification.new do |s|
   s.test_files  = Dir['spec/**/*.rb']
   s.homepage    = 'http://github.com/jamesdabbs/cave'
 
-  s.add_dependency 'activemodel'
+  s.add_dependency 'actionpack'
   s.add_dependency 'virtus'
 end
