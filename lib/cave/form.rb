@@ -65,6 +65,10 @@ module Cave
       persist!
     end
 
+    def save
+      !!save! rescue false
+    end
+
     def persist!
       raise "#{self.class} does not define a persist method"
     end
