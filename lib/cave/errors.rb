@@ -1,4 +1,4 @@
 module Cave
-  class ValidationError < Exception
+  class ValidationError < StandardError
   end
 end
