@@ -69,7 +69,12 @@ module Cave
     end
 
     def save
-      !!save! rescue false
+      begin
+        save!
+        true
+      rescue Cave::ValidationError
+        false
+      end
     end
 
     def persisted?
@@ -85,9 +90,19 @@ module Cave
     def field_coercion
       self.class.fields.each do |name, type|
         value = attributes[name]
-        unless value.nil? || value.is_a?(type)
+        unless value.nil? || coercable?(value, type)
           errors.add name, "should be a(n) #{type}"
         end
+      end
+    end
+
+    def coercable? value, type
+      if value.is_a? type
+        true
+      elsif type.instance_methods.include? :value_coerced?
+        type.new('').value_coerced? value
+      else
+        false
       end
     end
 
