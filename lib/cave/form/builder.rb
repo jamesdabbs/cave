@@ -26,7 +26,7 @@ module Cave
           </div>
         }.squish.html_safe
 
-        @template.content_tag 'div', raw, class: "control-group #{error_class}"
+        @template.content_tag 'div', raw, class: "control-group #{name} #{error_class}"
       end
     end
   end
