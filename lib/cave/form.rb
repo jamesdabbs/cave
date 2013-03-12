@@ -19,7 +19,10 @@ module Cave
         name = name.to_sym
 
         @_fields ||= {}
-        @_fields[name] = type
+        @_fields[name] = Field.new(name, type, 
+          opts.delete(:label), 
+          opts.delete(:help)
+        )
 
         attribute name, type
 
@@ -88,10 +91,11 @@ module Cave
     private #----------
 
     def field_coercion
-      self.class.fields.each do |name, type|
+      self.class.fields.each do |name, field|
+        field.type
         value = attributes[name]
-        unless value.nil? || coercable?(value, type)
-          errors.add name, "should be a(n) #{type}"
+        unless value.nil? || coercable?(value, field.type)
+          errors.add name, "should be a(n) #{field.type}"
         end
       end
     end
