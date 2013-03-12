@@ -27,12 +27,3 @@ class Cave::Form::Builder < ActionView::Helpers::FormBuilder
     @template.content_tag 'div', raw, class: "control-group #{name} #{error_class}"
   end
 end
-
-module ActionView::Helpers::FormHelper
-  def form_for record, options={}, &proc
-    if record.is_a? Cave::Form
-      options[:builder] ||= Cave::Form::Builder
-    end
-    super record, options, &proc
-  end
-end
