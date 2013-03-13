@@ -2,6 +2,8 @@ require 'action_view'
 
 class Cave::Form::Builder < ActionView::Helpers::FormBuilder
   def bootstrap control_type, field
+    field = object.class.fields[field] if field.is_a?(Symbol)
+    
     error = object.errors[field.name]
     value = object.lookup field.name
 
