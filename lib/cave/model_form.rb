@@ -12,6 +12,8 @@ module Cave
 
     def lookup attr_name
       super || @instance.send(attr_name)
+    rescue
+      nil
     end
 
     def for instance
