@@ -58,6 +58,10 @@ module Cave
       @bound = true
     end
 
+    def lookup attr_name
+      send attr_name
+    end
+
     def bound?
       @bound
     end
