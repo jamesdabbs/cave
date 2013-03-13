@@ -30,8 +30,8 @@ module Cave
     private #-----------
 
     def check_instance_model
+      model = self.class.model
       if @instance
-        model = self.class.model
         # Pry alters models in such a way that the first check may fail when it 
         # shouldn't. The second should still be fairly safe.
         unless @instance.is_a?(model) || @instance.class.name == model.name
