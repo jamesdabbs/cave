@@ -1,5 +1,4 @@
 require 'helper'
-require 'pry'
 
 class MetaForm < Cave::Form
   field :nick, String, 
