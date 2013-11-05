@@ -42,7 +42,7 @@ class Cave::Form::Builder < ActionView::Helpers::FormBuilder
       error_html  = "<span class='help-block'>#{error.first}</span>"
     end
 
-    label_html = label field.label, class: 'control-label'
+    label_html = label field.label
     field_html = send control_type, field.name, value: value
 
     raw = %{
